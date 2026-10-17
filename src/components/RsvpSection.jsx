@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { CheckCircle2, HeartHandshake, Send, Users, User, MessageSquareHeart, Eye, Download, X, ListFilter } from 'lucide-react';
+import { HeartHandshake, Send, Users, User, MessageSquareHeart, Eye, Download, X } from 'lucide-react';
 import { weddingConfig } from '../config/weddingData';
 
 export default function RsvpSection({ lang, rsvpRef }) {
@@ -9,7 +9,6 @@ export default function RsvpSection({ lang, rsvpRef }) {
   
   const [formData, setFormData] = useState({
     name: '',
-    attending: 'yes',
     guestsCount: 1,
     notes: ''
   });
@@ -45,8 +44,8 @@ export default function RsvpSection({ lang, rsvpRef }) {
         const newRsvp = {
           id: Date.now(),
           name: formData.name.trim(),
-          attending: formData.attending,
-          guestsCount: formData.attending === 'yes' ? formData.guestsCount : 0,
+          attending: 'yes',
+          guestsCount: formData.guestsCount,
           notes: formData.notes.trim(),
           submittedAt: new Date().toLocaleString(isAr ? 'ar-EG' : 'en-US')
         };
@@ -73,10 +72,9 @@ export default function RsvpSection({ lang, rsvpRef }) {
   // Export RSVPs to CSV for Excel
   const exportToCsv = () => {
     if (rsvpList.length === 0) return;
-    const headers = ['Name', 'Attending', 'Guests Count', 'Wishes / Notes', 'Date'];
+    const headers = ['Name', 'Guests Count', 'Wishes / Notes', 'Date'];
     const rows = rsvpList.map(r => [
       `"${r.name.replace(/"/g, '""')}"`,
-      r.attending === 'yes' ? 'Yes' : 'No',
       r.guestsCount,
       `"${(r.notes || '').replace(/"/g, '""')}"`,
       `"${r.submittedAt}"`
@@ -92,9 +90,7 @@ export default function RsvpSection({ lang, rsvpRef }) {
     document.body.removeChild(link);
   };
 
-  const totalAttendingGuests = rsvpList
-    .filter(r => r.attending === 'yes')
-    .reduce((sum, r) => sum + (parseInt(r.guestsCount) || 1), 0);
+  const totalAttendingGuests = rsvpList.reduce((sum, r) => sum + (parseInt(r.guestsCount) || 1), 0);
 
   return (
     <section ref={rsvpRef} id="rsvp-section" className="py-16 px-4">
@@ -106,10 +102,10 @@ export default function RsvpSection({ lang, rsvpRef }) {
             {isAr ? "يسعدنا حضوركم" : "JOIN OUR CELEBRATION"}
           </span>
           <h2 className="text-3xl sm:text-4xl font-script text-[#4A0E17]">
-            {isAr ? "تأكيد الحضور (RSVP)" : "RSVP & Wishes"}
+            {isAr ? "تأكيد الحضور والتهنئة" : "Confirm Attendance"}
           </h2>
           <p className="text-xs text-[#7A6A65] font-serif-luxury uppercase tracking-widest mt-1">
-            {isAr ? "يرجى تأكيد الحضور قبل الأول من نوفمبر" : "Kindly respond before November 1st"}
+            {isAr ? "يرجى تأكيد الحضور لمشاركتنا فرحة العمر" : "Kindly confirm your presence with us"}
           </p>
         </div>
 
@@ -137,73 +133,34 @@ export default function RsvpSection({ lang, rsvpRef }) {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder={isAr ? "مثال: م. أحمد عبد الله" : "e.g. John & Sarah Doe"}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#D8C7B0] bg-[#FAF7F2] text-sm text-[#2C2420] focus:outline-none focus:ring-2 focus:ring-[#4A0E17]/30 focus:border-[#4A0E17] transition-all"
+                    placeholder={isAr ? "مثال: م. أحمد عبد الله" : "e.g. Mr. & Mrs. John Doe"}
+                    className="w-full px-4 py-3 rounded-xl border border-[#D8C7B0] bg-[#FAF7F2] text-sm text-[#2C2420] focus:outline-none focus:ring-2 focus:ring-[#4A0E17]/30 focus:border-[#4A0E17] transition-all"
                   />
                 </div>
 
-                {/* Attendance Selection */}
+                {/* Number of Guests */}
                 <div>
-                  <label className="block text-xs font-serif-luxury uppercase tracking-wider text-[#4A0E17] font-semibold mb-2">
-                    {isAr ? "هل ستشاركونا الحفل؟ *" : "Will you attend? *"}
+                  <label className="block text-xs font-serif-luxury uppercase tracking-wider text-[#4A0E17] font-semibold mb-1.5 flex items-center gap-1.5">
+                    <Users className="w-3.5 h-3.5 text-[#C5A059]" />
+                    <span>{isAr ? "عدد الأفراد *" : "Number of Guests *"}</span>
                   </label>
-                  <div className="grid grid-cols-2 gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setFormData({ ...formData, attending: 'yes' })}
-                      className={`py-3 px-4 rounded-xl border text-xs font-serif-luxury tracking-wider font-semibold transition-all flex items-center justify-center gap-2 ${
-                        formData.attending === 'yes'
-                          ? 'bg-[#4A0E17] text-[#FAF7F2] border-[#4A0E17] shadow-sm'
-                          : 'bg-[#FAF7F2] text-[#5A4D48] border-[#D8C7B0] hover:border-[#4A0E17]'
-                      }`}
-                    >
-                      <CheckCircle2 className="w-4 h-4 text-[#DFCA98]" />
-                      <span>{isAr ? "بكل سرور، سأحضر" : "Joyfully Accept"}</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setFormData({ ...formData, attending: 'no' })}
-                      className={`py-3 px-4 rounded-xl border text-xs font-serif-luxury tracking-wider font-semibold transition-all flex items-center justify-center gap-2 ${
-                        formData.attending === 'no'
-                          ? 'bg-[#4A0E17] text-[#FAF7F2] border-[#4A0E17] shadow-sm'
-                          : 'bg-[#FAF7F2] text-[#5A4D48] border-[#D8C7B0] hover:border-[#4A0E17]'
-                      }`}
-                    >
-                      <span>{isAr ? "للأسف، أعتذر عن الحضور" : "Regretfully Decline"}</span>
-                    </button>
+                  <div className="flex gap-2">
+                    {[1, 2, 3, 4, 5].map((num) => (
+                      <button
+                        key={num}
+                        type="button"
+                        onClick={() => setFormData({ ...formData, guestsCount: num })}
+                        className={`flex-1 py-2.5 rounded-xl border text-xs font-serif-luxury font-bold transition-all ${
+                          formData.guestsCount === num
+                            ? 'bg-[#4A0E17] text-[#FAF7F2] border-[#4A0E17] shadow-sm'
+                            : 'bg-[#FAF7F2] text-[#4A0E17] border-[#D8C7B0] hover:bg-[#EAE2D5]'
+                        }`}
+                      >
+                        {num} {isAr ? (num === 1 ? 'فرد' : 'أفراد') : (num === 1 ? 'Guest' : 'Guests')}
+                      </button>
+                    ))}
                   </div>
                 </div>
-
-                {/* Number of Guests (Only if attending) */}
-                {formData.attending === 'yes' && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                  >
-                    <label className="block text-xs font-serif-luxury uppercase tracking-wider text-[#4A0E17] font-semibold mb-1.5 flex items-center gap-1.5">
-                      <Users className="w-3.5 h-3.5 text-[#C5A059]" />
-                      <span>{isAr ? "عدد الأفراد" : "Number of Guests"}</span>
-                    </label>
-                    <div className="flex gap-2">
-                      {[1, 2, 3, 4].map((num) => (
-                        <button
-                          key={num}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, guestsCount: num })}
-                          className={`flex-1 py-2 rounded-lg border text-xs font-bold transition-all ${
-                            formData.guestsCount === num
-                              ? 'bg-[#4A0E17] text-[#FAF7F2] border-[#4A0E17]'
-                              : 'bg-[#FAF7F2] text-[#4A0E17] border-[#D8C7B0] hover:bg-[#EAE2D5]'
-                          }`}
-                        >
-                          {num} {isAr ? (num === 1 ? 'فرد' : 'أفراد') : (num === 1 ? 'Guest' : 'Guests')}
-                        </button>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
 
                 {/* Message / Heartfelt Wishes */}
                 <div>
@@ -231,7 +188,7 @@ export default function RsvpSection({ lang, rsvpRef }) {
                   ) : (
                     <>
                       <Send className="w-3.5 h-3.5 text-[#DFCA98]" />
-                      <span>{isAr ? "إرسال التأكيد والتهنئة" : "Send RSVP & Wishes"}</span>
+                      <span>{isAr ? "تأكيد الحضور وإرسال التهنئة" : "Confirm Attendance & Send Wishes"}</span>
                     </>
                   )}
                 </button>
@@ -259,7 +216,7 @@ export default function RsvpSection({ lang, rsvpRef }) {
                 <p className="text-xs text-[#7A6A65] max-w-sm mx-auto leading-relaxed">
                   {isAr 
                     ? "تم استلام تأكيد حضوركم وتهنئتكم الجميلة بنجاح. نتطلع لمشاركتكم هذه الليلة الاستثنائية!" 
-                    : "Your RSVP and kind wishes have been received with joy. We cannot wait to celebrate with you!"}
+                    : "Your attendance and kind wishes have been received with joy. We cannot wait to celebrate with you!"}
                 </p>
 
                 <button
@@ -274,7 +231,7 @@ export default function RsvpSection({ lang, rsvpRef }) {
 
           {/* Discreet Admin / Couple View Button */}
           <div className="mt-6 pt-4 border-t border-[#E8DCC9] flex items-center justify-between text-[11px] text-[#8C7A75]">
-            <span>{isAr ? `إجمالي الردود: ${rsvpList.length}` : `Total Responses: ${rsvpList.length}`}</span>
+            <span>{isAr ? `إجمالي الحضور المسجل: ${totalAttendingGuests} فرد` : `Total Guests: ${totalAttendingGuests}`}</span>
             <button
               onClick={() => { loadRsvps(); setShowAdminModal(true); }}
               className="inline-flex items-center gap-1 text-[#9B7838] hover:text-[#4A0E17] font-medium transition-colors"
@@ -311,8 +268,8 @@ export default function RsvpSection({ lang, rsvpRef }) {
                   </h3>
                   <p className="text-xs text-[#7A6A65]">
                     {isAr 
-                      ? `حضور مؤكد: ${totalAttendingGuests} فرد (${rsvpList.filter(r => r.attending === 'yes').length} دعوة)` 
-                      : `Confirmed Attendance: ${totalAttendingGuests} guests (${rsvpList.filter(r => r.attending === 'yes').length} RSVPs)`}
+                      ? `حضور مؤكد: ${totalAttendingGuests} فرد (${rsvpList.length} بطاقة تأكيد)` 
+                      : `Confirmed Attendance: ${totalAttendingGuests} guests (${rsvpList.length} RSVPs)`}
                   </p>
                 </div>
                 
@@ -352,14 +309,8 @@ export default function RsvpSection({ lang, rsvpRef }) {
                         <span className="font-bold text-[#4A0E17] text-sm">
                           {item.name}
                         </span>
-                        <span className={`text-xs px-2.5 py-0.5 rounded-full font-medium ${
-                          item.attending === 'yes'
-                            ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                            : 'bg-stone-100 text-stone-600 border border-stone-300'
-                        }`}>
-                          {item.attending === 'yes'
-                            ? (isAr ? `سيحضر (${item.guestsCount} فرد)` : `Attending (${item.guestsCount})`)
-                            : (isAr ? 'يعتذر عن الحضور' : 'Declined')}
+                        <span className="text-xs px-2.5 py-0.5 rounded-full font-medium bg-emerald-100 text-emerald-800 border border-emerald-300">
+                          {isAr ? `${item.guestsCount} فرد` : `${item.guestsCount} Guest(s)`}
                         </span>
                       </div>
 

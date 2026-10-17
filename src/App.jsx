@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { MusicProvider, useMusic } from './context/MusicContext';
 import Navbar from './components/Navbar';
 import FloatingPetals from './components/FloatingPetals';
 import EnvelopeIntro from './components/EnvelopeIntro';
@@ -6,40 +7,35 @@ import HeroCard from './components/HeroCard';
 import CountdownTimer from './components/CountdownTimer';
 import OurStory from './components/OurStory';
 import EventDetails from './components/EventDetails';
-import PhotoGallery from './components/PhotoGallery';
 import RsvpSection from './components/RsvpSection';
 import Footer from './components/Footer';
-import { romanticAudio } from './utils/audioPlayer';
-import { weddingConfig } from './config/weddingData';
+import FloatingMusicButton from './components/FloatingMusicButton';
 
-export default function App() {
+function WeddingInvitationApp() {
   const [hasOpened, setHasOpened] = useState(false);
-  const [lang, setLang] = useState('ar'); // Default to Arabic as requested in chat
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [lang, setLang] = useState('ar');
   const rsvpRef = useRef(null);
 
-  // Sync document RTL/LTR with selected language
+  const { startMusicOnUserGesture } = useMusic();
+
+  // Sync document direction (RTL / LTR)
   useEffect(() => {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   }, [lang]);
 
   const handleOpenEnvelope = () => {
-    setHasOpened(true);
-    // Start background music automatically upon user interaction
-    if (weddingConfig.music.enabled) {
-      try {
-        romanticAudio.start(weddingConfig.music.externalUrl);
-        setIsAudioPlaying(true);
-      } catch (err) {
-        console.log('Audio init notice:', err);
-      }
+    // 1. Immediately trigger audio in user touch handler (Required for mobile browsers)
+    try {
+      startMusicOnUserGesture();
+    } catch (e) {
+      console.log('Music start note:', e);
     }
-  };
 
-  const handleToggleAudio = () => {
-    const isPlaying = romanticAudio.toggle(weddingConfig.music.externalUrl);
-    setIsAudioPlaying(isPlaying);
+    // 2. Transition into main invitation
+    setTimeout(() => {
+      setHasOpened(true);
+    }, 1200);
   };
 
   const scrollToRsvp = () => {
@@ -54,35 +50,30 @@ export default function App() {
       {/* Falling Romantic Petals & Gold Shimmer */}
       <FloatingPetals />
 
-      {/* Floating Navbar with Music & Language Switches */}
-      <Navbar
-        lang={lang}
-        setLang={setLang}
-        isAudioPlaying={isAudioPlaying}
-        onToggleAudio={handleToggleAudio}
-      />
+      {/* Floating Navbar */}
+      <Navbar lang={lang} setLang={setLang} />
+
+      {/* Floating Bottom Music Control Button (Visible across all sections) */}
+      <FloatingMusicButton lang={lang} />
 
       {/* Sealed Wax Envelope Intro Screen */}
       {!hasOpened ? (
         <EnvelopeIntro onOpen={handleOpenEnvelope} lang={lang} />
       ) : (
         <main className="relative z-20 transition-opacity duration-1000 ease-out">
-          {/* Main Invitation Card matching Video Composition */}
+          {/* Royal Invitation Card (Clean, prestigious typography & monogram) */}
           <HeroCard lang={lang} />
 
           {/* Countdown Clock */}
           <CountdownTimer lang={lang} onScrollToRsvp={scrollToRsvp} />
 
-          {/* Our Story & Romantic Quote */}
+          {/* Our Story & Heartfelt Message */}
           <OurStory lang={lang} />
 
-          {/* Event Details, Google Maps & Timeline */}
+          {/* Event Details, Interactive Google Maps & Wedding Itinerary */}
           <EventDetails lang={lang} />
 
-          {/* Photo Gallery with Lightbox */}
-          <PhotoGallery lang={lang} />
-
-          {/* RSVP Section */}
+          {/* RSVP Section & Wishes */}
           <RsvpSection lang={lang} rsvpRef={rsvpRef} />
 
           {/* Footer */}
@@ -91,5 +82,13 @@ export default function App() {
       )}
 
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <MusicProvider>
+      <WeddingInvitationApp />
+    </MusicProvider>
   );
 }

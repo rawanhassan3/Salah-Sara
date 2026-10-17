@@ -49,13 +49,21 @@ export const weddingConfig = {
     mapsUrl: "https://share.google/8nomksZgpfR8YmJSo"
   },
 
-  // Background Music
-  // Audio will automatically play via Web Audio gentle piano arpeggio if externalUrl is null,
-  // or you can put your own mp3 audio link here!
+  /**
+   * Background Music Configuration:
+   * - Song: "Edkhely Omri" by Hussain Al Jassmi (ادخلي عمري - حسين الجسمي)
+   * - YouTube Video ID: Hp8WTVqR_0U (from https://youtu.be/Hp8WTVqR_0U)
+   * 
+   * HOW TO SWITCH TO LOCAL MP3:
+   * 1. Place your mp3 file in: /public/music/song.mp3
+   * 2. Set `useLocalAudio: true` below.
+   */
   music: {
     enabled: true,
-    title: "Canon in D / Romantic Piano Melody",
-    externalUrl: null // Set to "/music.mp3" or any online audio url if you have a file
+    title: "Edkhely Omri - Hussain Al Jassmi | ادخلي عمري - حسين الجسمي",
+    youtubeVideoId: "Hp8WTVqR_0U",  // YouTube Video ID (change anytime to switch the song)
+    useLocalAudio: false,           // Set to true to use local /music/song.mp3 instead of YouTube
+    localAudioPath: "/music/song.mp3"
   },
 
   // Our Story / Heartfelt Message
@@ -66,7 +74,7 @@ export const weddingConfig = {
     },
     quote: {
       en: "“Two souls with but a single thought, two hearts that beat as one.”",
-      ar: "«ومن آياته أن خلق لكم من أنفسكم أزواجاً لتسكنوا إليها وجعل بينكم مودة ورحمة»"
+      ar: "«وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً»"
     },
     message: {
       en: "From our first meeting to this beautiful milestone, every moment led us here. We cannot imagine beginning this new chapter without the laughter, warmth, and love of our closest family and cherished friends.",
@@ -117,38 +125,14 @@ export const weddingConfig = {
       ar: "الزي المقترح"
     },
     palette: {
-      en: "Formal & Elegant Evening Wear (Black Tie / Burgundy & Earth Tones welcome)",
+      en: "Formal & Royal Evening Wear (Black Tie / Burgundy & Gold tones)",
       ar: "ملابس رسمية أنيقة ومسائية (بدل رسمية وفساتين سواريه)"
     }
   },
 
-  // Photo Gallery
-  gallery: [
-    {
-      url: "/couple.jpg",
-      captionEn: "The beginning of forever",
-      captionAr: "بداية رحلة العمر"
-    },
-    {
-      url: "/rings.jpg",
-      captionEn: "Forever & Always",
-      captionAr: "وعد بالبقاء معاً"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80",
-      captionEn: "Pure Joy",
-      captionAr: "فرحة اللقاء"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80",
-      captionEn: "Love in Bloom",
-      captionAr: "قلوب يملؤها الحب"
-    }
-  ],
-
-  // Contact / WhatsApp
+  // Contact / WhatsApp Share Text
   whatsappShareText: {
-    en: "You're invited to celebrate Salah & Sara's Wedding on November 15! Check our invitation:",
+    en: "You're invited to celebrate Salah & Sara's Wedding on November 15! Check our royal invitation:",
     ar: "يسعدنا ويشرفنا دعوتكم لحضور حفل زفاف صلاح وسارة يوم ١٥ نوفمبر! تفاصيل الدعوة والموقع عبر الرابط:"
   }
 };
