@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --burgundy: #4A0E17;
+    --burgundy-dark: #32080E;
+    --burgundy-deep: #25050A;
+    --burgundy-light: #6B1723;
+    --cream: #FAF7F2;
+    --cream-card: #FDFBF7;
+    --cream-border: #E8DFD3;
+    --gold: #C5A059;
+    --gold-light: #DFCA98;
+    --gold-dark: #9B7838;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--cream);
+    color: #2D2421;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+.font-script {
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+}
+
+.font-alex {
+  font-family: 'Alex Brush', cursive;
+}
+
+.font-serif-luxury {
+  font-family: 'Cinzel', serif;
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-arabic-title {
+  font-family: 'Amiri', 'Marhey', serif;
+}
+
+.font-arabic-body {
+  font-family: 'Reem Kufi', 'Amiri', sans-serif;
+}
+
+/* Luxury Paper Texture effect */
+.paper-texture {
+  background-color: #FAF7F2;
+  background-image: radial-gradient(#d3c6b4 0.75px, transparent 0.75px), radial-gradient(#d3c6b4 0.75px, #FAF7F2 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+/* Vintage Envelope Flap Shadows & 3D */
+.envelope-shadow {
+  box-shadow: 0 25px 50px -12px rgba(45, 10, 15, 0.35), 0 0 0 1px rgba(197, 160, 89, 0.2);
+}
+
+.card-luxury-shadow {
+  box-shadow: 0 20px 40px -15px rgba(50, 8, 14, 0.15), 0 0 0 1px rgba(220, 205, 180, 0.6);
+}
+
+/* Gold foil shimmer */
+.gold-shimmer {
+  background: linear-gradient(135deg, #DFCA98 0%, #C5A059 40%, #FFF3D6 50%, #C5A059 60%, #9B7838 100%);
+  background-size: 200% auto;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Scalloped lace edge helper */
+.scalloped-lace {
+  border: 2px dashed #DCCDB4;
+  outline: 4px solid rgba(247, 243, 235, 0.9);
+  outline-offset: -6px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #C5A059;
+  border-radius: 9999px;
+}
