@@ -15,7 +15,7 @@ export function MusicProvider({ children }) {
   const fadeIntervalRef = useRef(null);
   const wasPlayingBeforeHidden = useRef(false);
 
-  const { youtubeVideoId, useLocalAudio, localAudioPath } = weddingConfig.music;
+    const { youtubeVideoId, useLocalAudio, localAudioPath, startSeconds = 72 } = weddingConfig.music;
 
   // Initialize YouTube API & Player
   useEffect(() => {
@@ -57,6 +57,7 @@ export function MusicProvider({ children }) {
             playsinline: 1,
             modestbranding: 1,
             rel: 0,
+            start: startSeconds,       // Start at 1:12 (72s)
             origin: window.location.origin
           },
           events: {
@@ -193,6 +194,9 @@ export function MusicProvider({ children }) {
     if (playerRef.current && playerRef.current.playVideo) {
       try {
         playerRef.current.unMute();
+        if (playerRef.current.seekTo) {
+          playerRef.current.seekTo(startSeconds, true);
+        }
         playerRef.current.playVideo();
         setIsPlaying(true);
         fadeInVolume();

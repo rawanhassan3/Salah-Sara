@@ -62,7 +62,8 @@ export const weddingConfig = {
   music: {
     enabled: true,
     title: "Edkhely Omri - Hussain Al Jassmi | ادخلي عمري - حسين الجسمي",
-    youtubeVideoId: "Hp8WTVqR_0U",  // YouTube Video ID (change anytime to switch the song)
+    youtubeVideoId: "Hp8WTVqR_0U",  // YouTube Video ID
+    startSeconds: 72,               // Starts at 1:12 (72 seconds)
     useLocalAudio: false,           // Set to true to use local /music/song.mp3 instead of YouTube
     localAudioPath: "/music/song.mp3"
   },
