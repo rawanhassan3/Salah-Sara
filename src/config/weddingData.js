@@ -35,19 +35,20 @@ export const weddingConfig = {
   // Venue & Location
   venue: {
     name: {
-      en: "Le Grand Garden & Ballroom",
-      ar: "جراند بالروم & جاردن"
+      en: "Regency Pyramids Hotel - Marvella Ballroom",
+      ar: "فندق ريجنسي بيراميدز - قاعة مارڤيلا"
     },
     city: {
-      en: "Cairo, Egypt",
-      ar: "القاهرة، مصر"
+      en: "Al Haram, Giza",
+      ar: "الهرم، الجيزة"
     },
     address: {
-      en: "Katamya Road, New Cairo, Egypt",
-      ar: "طريق القطامية، التجمع الخامس، القاهرة"
+      en: "Kafr Nassar, Al Haram, Giza Governorate",
+      ar: "كفر نصار، شارع الهرم، محافظة الجيزة"
     },
-    mapsUrl: "https://share.google/8nomksZgpfR8YmJSo"
+    mapsUrl: "https://www.google.com/maps/place/Regency+Pyramids+Hotel,+Al+Shams,+Kafr+Nassar,+Al+Haram,+Giza+Governorate+3514811/@29.9875201,31.1325774,15z/data=!4m6!3m5!1s0x1458459cc1aa58dd:0x60dbcbfde068fc67!8m2!3d29.9875201!4d31.1325774!16s%2Fg%2F11h59s095d?hl=en&g_ep=Eg1tbF8yMDI2MTAxM18wIOC7DCoASAJQAg%3D%3D"
   },
+
 
   /**
    * Background Music Configuration:
