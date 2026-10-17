@@ -29,7 +29,7 @@ export default function EnvelopeIntro({ onOpen, lang }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#F8F5EE] paper-texture px-4">
       <div className="relative w-full max-w-md flex flex-col items-center">
-        
+
         {/* Royal Ambient Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -44,7 +44,7 @@ export default function EnvelopeIntro({ onOpen, lang }) {
           </div>
 
           <span className="text-[#8E6A2B] tracking-[0.35em] uppercase text-xs font-serif-luxury font-bold block mb-1">
-            {isAr ? "دعوة زفاف ملكية" : "ROYAL WEDDING INVITATION"}
+            {isAr ? "دعوة زفاف " : "ROYAL WEDDING INVITATION"}
           </span>
           <h1 className="text-4xl md:text-5xl font-script text-[#2D241E] leading-tight drop-shadow-sm">
             {weddingConfig.groom[lang]} &amp; {weddingConfig.bride[lang]}
@@ -55,7 +55,7 @@ export default function EnvelopeIntro({ onOpen, lang }) {
         </motion.div>
 
         {/* Custom Embossed Textured Envelope Container */}
-        <div 
+        <div
           onClick={handleOpenEnvelope}
           className="relative w-full max-w-[370px] h-[260px] cursor-pointer group select-none flex items-center justify-center"
           style={{ perspective: '1200px' }}
@@ -86,7 +86,7 @@ export default function EnvelopeIntro({ onOpen, lang }) {
           </motion.div>
 
           {/* Authentic Embossed Ivory Envelope (from user image) */}
-          <motion.div 
+          <motion.div
             className="relative w-full h-full z-20 flex items-center justify-center drop-shadow-2xl"
             initial={{ scale: 1 }}
             animate={isOpen ? { scale: 0.98, opacity: 0.95 } : { scale: [1, 1.015, 1] }}
@@ -98,22 +98,19 @@ export default function EnvelopeIntro({ onOpen, lang }) {
               className="w-full h-full object-contain filter contrast-[1.02] drop-shadow-lg rounded-lg"
             />
 
-            {/* Pearlescent Gold Wax Seal Emblem placed over the embossed tip */}
+            {/* Custom S&S Metallic Antique Gold Wax Seal (matching user's reference) */}
             <motion.div
-              className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 z-30"
+              className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none"
               initial={{ scale: 1 }}
               animate={isOpen ? { scale: 1.3, opacity: 0, y: -20 } : { scale: 1 }}
               transition={{ duration: 0.4 }}
             >
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#FFF5DE] via-[#EBD8B0] to-[#C5A059] border-2 border-[#B89047] shadow-xl flex items-center justify-center p-0.5 group-hover:scale-105 group-hover:shadow-[#C5A059]/60 transition-all">
-                <div className="w-11 h-11 rounded-full border border-dashed border-[#8E6A2B] flex flex-col items-center justify-center text-[#8E6A2B]">
-                  <span className="font-serif-luxury text-[9px] font-bold tracking-tighter">S &amp; S</span>
-                  <Heart className="w-2.5 h-2.5 fill-[#8E6A2B] text-[#8E6A2B] mt-0.5" />
-                </div>
-                <div className="absolute top-1 left-2 w-4 h-2 bg-white/50 rounded-full blur-[1px]" />
-              </div>
+              <img
+                src="/gold-wax-seal.png"
+                alt="Salah & Sara Custom Gold Wax Seal"
+                className="w-20 h-20 sm:w-22 sm:h-22 object-contain drop-shadow-2xl filter brightness-[1.02] contrast-[1.05]"
+              />
             </motion.div>
-
           </motion.div>
 
         </div>
@@ -134,9 +131,7 @@ export default function EnvelopeIntro({ onOpen, lang }) {
             <span>{isAr ? "اضغط لفتح الدعوة" : "Tap to open"}</span>
             <Sparkles className="w-4 h-4 text-[#FFF3D6] group-hover:-rotate-45 transition-transform" />
           </button>
-          <p className="text-[11px] text-[#7A6F66] mt-3 tracking-wider font-medium">
-            {isAr ? "أغنية «ادخلي عمري» وتفاصيل الحفل بانتظاركم" : "Hussain Al Jassmi's «Edkhely Omri» awaits"}
-          </p>
+
         </motion.div>
 
       </div>

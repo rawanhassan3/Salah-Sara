@@ -20,12 +20,13 @@ export default function Footer({ lang }) {
     <footer className="pt-12 pb-16 px-4 text-center border-t border-[#E8DFCF] bg-[#F8F5EE] relative">
       <div className="max-w-md mx-auto space-y-6">
         
-        {/* Wax Seal Monogram in Gold & Beige */}
-        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#FFF5DE] via-[#EBD8B0] to-[#C5A059] border-2 border-[#B89047] shadow-lg flex items-center justify-center p-1 mx-auto">
-          <div className="w-11 h-11 rounded-full border border-dashed border-[#8E6A2B] flex flex-col items-center justify-center text-[#8E6A2B]">
-            <span className="font-serif-luxury text-[9px] font-bold">S &amp; S</span>
-            <Heart className="w-2.5 h-2.5 fill-[#8E6A2B] text-[#8E6A2B] mt-0.5" />
-          </div>
+        {/* Custom Metallic Antique Gold Wax Seal */}
+        <div className="flex justify-center">
+          <img
+            src="/gold-wax-seal.png"
+            alt="Salah & Sara Wax Seal"
+            className="w-16 h-16 object-contain drop-shadow-xl"
+          />
         </div>
 
         {/* Closing phrase */}

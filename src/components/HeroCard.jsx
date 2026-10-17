@@ -107,12 +107,12 @@ export default function HeroCard({ lang }) {
           </div>
 
           {/* Royal Wax Seal resting cleanly at bottom */}
-          <div className="absolute left-1/2 -bottom-5 -translate-x-1/2 z-20">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FFF5DE] via-[#EBD8B0] to-[#C5A059] border-2 border-[#B89047] shadow-xl flex items-center justify-center p-0.5">
-              <div className="w-10 h-10 rounded-full border border-dashed border-[#8E6A2B] flex items-center justify-center text-[#8E6A2B]">
-                <span className="font-serif-luxury text-[9px] font-bold">S &amp; S</span>
-              </div>
-            </div>
+          <div className="absolute left-1/2 -bottom-7 -translate-x-1/2 z-20">
+            <img
+              src="/gold-wax-seal.png"
+              alt="Salah & Sara Wax Seal"
+              className="w-16 h-16 sm:w-18 sm:h-18 object-contain drop-shadow-xl"
+            />
           </div>
 
         </div>
