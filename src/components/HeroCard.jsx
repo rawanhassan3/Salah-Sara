@@ -17,11 +17,21 @@ export default function HeroCard({ lang }) {
         className="relative w-full max-w-[460px] mx-auto"
       >
         
-        {/* Royal Gold Envelope Backing */}
-        <div className="relative bg-gradient-to-b from-[#C5A059] via-[#B89047] to-[#8E6A2B] rounded-3xl p-4 sm:p-5 pt-10 pb-12 envelope-gold-shadow overflow-visible border border-[#E0C78D]">
+        {/* Embossed Paper Envelope Backing */}
+        <div className="relative bg-[#FCFAF6] rounded-3xl p-4 sm:p-5 pt-8 pb-10 card-royal-shadow overflow-visible border-2 border-[#E8DFCF]">
+          
+          {/* Top Embossed Ornament Header (matching user's envelope flap) */}
+          <div className="w-full flex justify-center mb-3 opacity-90">
+            <svg className="w-36 h-10 text-[#B89047]" viewBox="0 0 160 40" fill="none">
+              <path d="M 80,5 Q 85,15 95,12 Q 105,9 110,18 Q 120,20 135,16 Q 150,12 155,25" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+              <path d="M 80,5 Q 75,15 65,12 Q 55,9 50,18 Q 40,20 25,16 Q 10,12 5,25" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+              <circle cx="80" cy="18" r="3" fill="currentColor" />
+              <path d="M 75,25 C 78,21 82,21 85,25" stroke="currentColor" strokeWidth="1.2" />
+            </svg>
+          </div>
 
           {/* Main Royal Invitation Card (Clean, Prestigious Ivory Paper with Double Gold Border) */}
-          <div className="relative bg-[#FCFAF6] rounded-2xl p-6 sm:p-8 pt-7 pb-10 card-royal-shadow border-2 border-[#E8DFCF] overflow-hidden z-10 text-center">
+          <div className="relative bg-[#FDFBF7] rounded-2xl p-6 sm:p-8 pt-6 pb-10 border border-[#E0C78D]/60 overflow-hidden text-center shadow-inner">
             
             {/* Elegant Double Hairline Gold Border */}
             <div className="absolute inset-3 border border-[#C5A059]/60 rounded-xl pointer-events-none" />
