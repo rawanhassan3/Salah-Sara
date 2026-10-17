@@ -16,46 +16,46 @@ export default function Navbar({ lang, setLang }) {
 
   return (
     <header className="fixed top-4 left-0 right-0 z-40 px-4 flex justify-center pointer-events-none">
-      <nav className="pointer-events-auto bg-[#FAF7F2]/90 backdrop-blur-md border border-[#E0D7C6] shadow-lg rounded-full px-4 py-2 flex items-center gap-3 text-xs tracking-wider transition-all duration-300 hover:shadow-xl hover:border-[#C5A059]/60">
+      <nav className="pointer-events-auto bg-[#FCFAF6]/90 backdrop-blur-md border border-[#E8DFCF] shadow-lg rounded-full px-4 py-2 flex items-center gap-3 text-xs tracking-wider transition-all duration-300 hover:shadow-xl hover:border-[#C5A059]/60">
         
-        {/* Audio Player Toggle (If not in error) */}
+        {/* Audio Player Toggle */}
         {!hasError && (
           <>
             <button
               onClick={toggleMusic}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[#4A0E17] hover:bg-[#4A0E17]/10 transition-colors"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[#8E6A2B] hover:bg-[#B89047]/10 transition-colors"
               title={isPlaying ? (isAr ? "كتم الصوت" : "Mute Music") : (isAr ? "تشغيل الموسيقى" : "Play Music")}
               aria-label="Toggle Music"
             >
               {isPlaying ? (
                 <>
-                  <Volume2 className="w-4 h-4 text-[#4A0E17] animate-pulse" />
-                  <span className="hidden sm:inline font-medium">
+                  <Volume2 className="w-4 h-4 text-[#B89047] animate-pulse" />
+                  <span className="hidden sm:inline font-semibold text-[#8E6A2B]">
                     {isAr ? "ادخلي عمري ♫" : "Music On"}
                   </span>
                   <span className="flex gap-0.5 items-end h-3">
-                    <span className="w-0.5 h-3 bg-[#4A0E17] animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                    <span className="w-0.5 h-2 bg-[#4A0E17] animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                    <span className="w-0.5 h-2.5 bg-[#4A0E17] animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                    <span className="w-0.5 h-3 bg-[#B89047] animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                    <span className="w-0.5 h-2 bg-[#B89047] animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                    <span className="w-0.5 h-2.5 bg-[#B89047] animate-bounce" style={{ animationDelay: '300ms' }}></span>
                   </span>
                 </>
               ) : (
                 <>
-                  <VolumeX className="w-4 h-4 text-[#7A6A65]" />
-                  <span className="hidden sm:inline text-[#7A6A65]">
+                  <VolumeX className="w-4 h-4 text-[#8C7E74]" />
+                  <span className="hidden sm:inline text-[#8C7E74]">
                     {isAr ? "موسيقى" : "Music"}
                   </span>
                 </>
               )}
             </button>
-            <span className="w-[1px] h-4 bg-[#DCCDB4]" />
+            <span className="w-[1px] h-4 bg-[#E0D7C6]" />
           </>
         )}
 
         {/* WhatsApp Share Button */}
         <button
           onClick={handleShare}
-          className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[#4A0E17] hover:bg-[#4A0E17]/10 transition-colors font-medium"
+          className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[#8E6A2B] hover:bg-[#B89047]/10 transition-colors font-medium"
           title={isAr ? "مشاركة الدعوة على واتساب" : "Share on WhatsApp"}
         >
           <Share2 className="w-3.5 h-3.5 text-[#25D366]" />
@@ -64,12 +64,12 @@ export default function Navbar({ lang, setLang }) {
           </span>
         </button>
 
-        <span className="w-[1px] h-4 bg-[#DCCDB4]" />
+        <span className="w-[1px] h-4 bg-[#E0D7C6]" />
 
         {/* Language Toggle */}
         <button
           onClick={() => setLang(isAr ? 'en' : 'ar')}
-          className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#4A0E17] text-[#FAF7F2] hover:bg-[#6B1723] transition-all shadow-sm font-semibold"
+          className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#B89047] text-[#FCFAF6] hover:bg-[#A0782C] transition-all shadow-sm font-semibold"
           title={isAr ? "Switch to English" : "التبديل إلى العربية"}
         >
           <Globe className="w-3.5 h-3.5" />

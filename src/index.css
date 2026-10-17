@@ -2,16 +2,16 @@
 
 @layer base {
   :root {
-    --burgundy: #4A0E17;
-    --burgundy-dark: #32080E;
-    --burgundy-deep: #25050A;
-    --burgundy-light: #6B1723;
-    --cream: #FAF7F2;
-    --cream-card: #FDFBF7;
-    --cream-border: #E8DFD3;
-    --gold: #C5A059;
-    --gold-light: #DFCA98;
-    --gold-dark: #9B7838;
+    --gold-primary: #B89047;
+    --gold-deep: #8E6A2B;
+    --gold-light: #E0C78D;
+    --gold-champagne: #F3E5C8;
+    --beige-bg: #F8F5EE;
+    --beige-card: #FCFAF6;
+    --beige-card-inner: #FBF8F2;
+    --beige-border: #E8DFCF;
+    --royal-text: #2D241E;
+    --royal-text-muted: #7A6F66;
   }
 
   html {
@@ -20,8 +20,8 @@
   }
 
   body {
-    background-color: var(--cream);
-    color: #2D2421;
+    background-color: var(--beige-bg);
+    color: var(--royal-text);
     font-family: 'Montserrat', system-ui, sans-serif;
     overflow-x: hidden;
   }
@@ -51,49 +51,44 @@
   font-family: 'Reem Kufi', 'Amiri', sans-serif;
 }
 
-/* Luxury Paper Texture effect */
+/* Warm Royal Linen Paper Texture */
 .paper-texture {
-  background-color: #FAF7F2;
-  background-image: radial-gradient(#d3c6b4 0.75px, transparent 0.75px), radial-gradient(#d3c6b4 0.75px, #FAF7F2 0.75px);
+  background-color: #F8F5EE;
+  background-image: radial-gradient(#d8ccba 0.75px, transparent 0.75px), radial-gradient(#d8ccba 0.75px, #F8F5EE 0.75px);
   background-size: 30px 30px;
   background-position: 0 0, 15px 15px;
 }
 
-/* Vintage Envelope Flap Shadows & 3D */
-.envelope-shadow {
-  box-shadow: 0 25px 50px -12px rgba(45, 10, 15, 0.35), 0 0 0 1px rgba(197, 160, 89, 0.2);
+/* Gold Envelope Flap Shadows & 3D Depth */
+.envelope-gold-shadow {
+  box-shadow: 0 25px 50px -12px rgba(142, 106, 43, 0.25), 0 0 0 1px rgba(184, 144, 71, 0.35);
 }
 
-.card-luxury-shadow {
-  box-shadow: 0 20px 40px -15px rgba(50, 8, 14, 0.15), 0 0 0 1px rgba(220, 205, 180, 0.6);
+.card-royal-shadow {
+  box-shadow: 0 20px 45px -15px rgba(142, 106, 43, 0.15), 0 0 0 1px rgba(224, 199, 141, 0.5);
 }
 
-/* Gold foil shimmer */
-.gold-shimmer {
-  background: linear-gradient(135deg, #DFCA98 0%, #C5A059 40%, #FFF3D6 50%, #C5A059 60%, #9B7838 100%);
-  background-size: 200% auto;
-  animation: shine 4s linear infinite;
+/* Metallic Gold Foil Shimmer */
+.gold-foil-text {
+  background: linear-gradient(135deg, #A0782C 0%, #D4AF37 25%, #FFF2CC 50%, #C5A059 75%, #8A6726 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-@keyframes shine {
-  to {
-    background-position: 200% center;
-  }
+.gold-gradient-btn {
+  background: linear-gradient(135deg, #B89047 0%, #D4AF37 50%, #A0782C 100%);
 }
 
-/* Scalloped lace edge helper */
-.scalloped-lace {
-  border: 2px dashed #DCCDB4;
-  outline: 4px solid rgba(247, 243, 235, 0.9);
-  outline-offset: -6px;
+.gold-gradient-btn:hover {
+  background: linear-gradient(135deg, #C5A059 0%, #DFCA98 50%, #B89047 100%);
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar in gold */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF7F2;
+  background: #F8F5EE;
 }
 ::-webkit-scrollbar-thumb {
   background: #C5A059;
