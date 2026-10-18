@@ -12,26 +12,23 @@ import FloatingMusicButton from './components/FloatingMusicButton';
 
 function WeddingInvitationApp() {
   const [hasOpened, setHasOpened] = useState(false);
-  const [lang, setLang] = useState('ar');
   const detailsRef = useRef(null);
 
   const { startMusicOnUserGesture } = useMusic();
 
-  // Sync document direction (RTL / LTR)
+  // Always enforce Arabic and RTL
   useEffect(() => {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  }, [lang]);
+    document.documentElement.lang = 'ar';
+    document.documentElement.dir = 'rtl';
+  }, []);
 
   const handleOpenEnvelope = () => {
-    // 1. Immediately trigger Hussain Al Jassmi song in user tap handler (Required for mobile browsers)
     try {
       startMusicOnUserGesture();
     } catch (e) {
       console.log('Music gesture notice:', e);
     }
 
-    // 2. Transition into main invitation
     setTimeout(() => {
       setHasOpened(true);
     }, 1200);
@@ -44,36 +41,36 @@ function WeddingInvitationApp() {
   };
 
   return (
-    <div className={`min-h-screen bg-[#F8F5EE] text-[#2D241E] paper-texture relative ${lang === 'ar' ? 'font-arabic-body' : ''}`}>
+    <div className="min-h-screen bg-[#F8F5EE] text-[#2D241E] paper-texture relative font-arabic-body" dir="rtl">
       
       {/* Falling Romantic Golden Particles */}
       <FloatingPetals />
 
-      {/* Floating Navbar */}
-      <Navbar lang={lang} setLang={setLang} />
+      {/* Floating Navbar (Arabic) */}
+      <Navbar />
 
       {/* Floating Bottom Music Control Button ("ادخلي عمري") */}
-      <FloatingMusicButton lang={lang} />
+      <FloatingMusicButton />
 
       {/* Sealed Wax Envelope Intro Screen */}
       {!hasOpened ? (
-        <EnvelopeIntro onOpen={handleOpenEnvelope} lang={lang} />
+        <EnvelopeIntro onOpen={handleOpenEnvelope} />
       ) : (
         <main className="relative z-20 transition-opacity duration-1000 ease-out">
           {/* Royal Invitation Card in Gold & Beige */}
-          <HeroCard lang={lang} />
+          <HeroCard />
 
           {/* Countdown Clock with Quick Jump to Venue */}
-          <CountdownTimer lang={lang} onScrollToDetails={scrollToDetails} />
+          <CountdownTimer onScrollToDetails={scrollToDetails} />
 
           {/* Our Story & Heartfelt Message */}
-          <OurStory lang={lang} />
+          <OurStory />
 
           {/* Event Details, Interactive Google Maps & Add to Calendar */}
-          <EventDetails lang={lang} detailsRef={detailsRef} />
+          <EventDetails detailsRef={detailsRef} />
 
           {/* Footer */}
-          <Footer lang={lang} />
+          <Footer />
         </main>
       )}
 

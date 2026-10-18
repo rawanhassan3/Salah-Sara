@@ -1,14 +1,13 @@
 import React from 'react';
-import { Volume2, VolumeX, Globe, Share2 } from 'lucide-react';
+import { Volume2, VolumeX, Share2 } from 'lucide-react';
 import { weddingConfig } from '../config/weddingData';
 import { useMusic } from '../context/MusicContext';
 
-export default function Navbar({ lang, setLang }) {
-  const isAr = lang === 'ar';
+export default function Navbar() {
   const { isPlaying, toggleMusic, hasError } = useMusic();
 
   const handleShare = () => {
-    const text = isAr ? weddingConfig.whatsappShareText.ar : weddingConfig.whatsappShareText.en;
+    const text = weddingConfig.whatsappShareText.ar;
     const url = window.location.href;
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`;
     window.open(whatsappUrl, '_blank');
@@ -23,15 +22,15 @@ export default function Navbar({ lang, setLang }) {
           <>
             <button
               onClick={toggleMusic}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[#8E6A2B] hover:bg-[#B89047]/10 transition-colors"
-              title={isPlaying ? (isAr ? "كتم الصوت" : "Mute Music") : (isAr ? "تشغيل الموسيقى" : "Play Music")}
-              aria-label="Toggle Music"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[#8E6A2B] hover:bg-[#B89047]/10 transition-colors"
+              title={isPlaying ? "كتم الموسيقى" : "تشغيل الموسيقى"}
+              aria-label="التحكم بالموسيقى"
             >
               {isPlaying ? (
                 <>
                   <Volume2 className="w-4 h-4 text-[#B89047] animate-pulse" />
-                  <span className="hidden sm:inline font-semibold text-[#8E6A2B]">
-                    {isAr ? "ادخلي عمري ♫" : "Music On"}
+                  <span className="font-semibold text-[#8E6A2B]">
+                    ادخلي عمري ♫
                   </span>
                   <span className="flex gap-0.5 items-end h-3">
                     <span className="w-0.5 h-3 bg-[#B89047] animate-bounce" style={{ animationDelay: '0ms' }}></span>
@@ -42,8 +41,8 @@ export default function Navbar({ lang, setLang }) {
               ) : (
                 <>
                   <VolumeX className="w-4 h-4 text-[#8C7E74]" />
-                  <span className="hidden sm:inline text-[#8C7E74]">
-                    {isAr ? "موسيقى" : "Music"}
+                  <span className="text-[#8C7E74]">
+                    تشغيل الموسيقى
                   </span>
                 </>
               )}
@@ -55,25 +54,11 @@ export default function Navbar({ lang, setLang }) {
         {/* WhatsApp Share Button */}
         <button
           onClick={handleShare}
-          className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[#8E6A2B] hover:bg-[#B89047]/10 transition-colors font-medium"
-          title={isAr ? "مشاركة الدعوة على واتساب" : "Share on WhatsApp"}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[#8E6A2B] hover:bg-[#B89047]/10 transition-colors font-bold"
+          title="مشاركة الدعوة على واتساب"
         >
           <Share2 className="w-3.5 h-3.5 text-[#25D366]" />
-          <span className="hidden sm:inline">
-            {isAr ? "مشاركة" : "Share"}
-          </span>
-        </button>
-
-        <span className="w-[1px] h-4 bg-[#E0D7C6]" />
-
-        {/* Language Toggle */}
-        <button
-          onClick={() => setLang(isAr ? 'en' : 'ar')}
-          className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#B89047] text-[#FCFAF6] hover:bg-[#A0782C] transition-all shadow-sm font-semibold"
-          title={isAr ? "Switch to English" : "التبديل إلى العربية"}
-        >
-          <Globe className="w-3.5 h-3.5" />
-          <span>{isAr ? "English" : "العربية"}</span>
+          <span>مشاركة الدعوة</span>
         </button>
       </nav>
     </header>

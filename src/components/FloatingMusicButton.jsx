@@ -2,19 +2,18 @@ import React from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { useMusic } from '../context/MusicContext';
 
-export default function FloatingMusicButton({ lang }) {
+export default function FloatingMusicButton() {
   const { isPlaying, toggleMusic, hasError } = useMusic();
-  const isAr = lang === 'ar';
 
   if (hasError) return null;
 
   return (
-    <div className="fixed bottom-6 ltr:right-6 rtl:left-6 z-40 select-none">
+    <div className="fixed bottom-6 left-6 z-40 select-none">
       <button
         onClick={toggleMusic}
         className="relative group flex items-center justify-center w-13 h-13 rounded-full gold-gradient-btn text-[#FCFAF6] shadow-2xl border-2 border-[#EBD8B0] transition-all duration-300 hover:scale-110 active:scale-95"
-        title={isPlaying ? (isAr ? "كتم الموسيقى" : "Mute Music") : (isAr ? "تشغيل الموسيقى" : "Play Music")}
-        aria-label="Toggle Wedding Music"
+        title={isPlaying ? "كتم الموسيقى" : "تشغيل الموسيقى"}
+        aria-label="التحكم بالموسيقى"
       >
         {/* Subtle Pulse Ripple Ring when Playing */}
         {isPlaying && (
@@ -35,10 +34,8 @@ export default function FloatingMusicButton({ lang }) {
         )}
 
         {/* Tooltip on hover */}
-        <span className="absolute bottom-full mb-2 ltr:right-0 rtl:left-0 whitespace-nowrap px-3 py-1 bg-[#2D231E]/95 text-[#FFF5DE] text-[10px] font-serif-luxury tracking-wider rounded-md border border-[#C5A059]/50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">
-          {isPlaying 
-            ? (isAr ? "حسين الجسمي - ادخلي عمري ♫" : "Edkhely Omri - Hussain Al Jassmi ♫") 
-            : (isAr ? "تشغيل الموسيقى" : "Play Music")}
+        <span className="absolute bottom-full mb-2 left-0 whitespace-nowrap px-3 py-1 bg-[#2D231E]/95 text-[#FFF5DE] text-xs tracking-wider rounded-md border border-[#C5A059]/50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">
+          {isPlaying ? "حسين الجسمي - ادخلي عمري ♫" : "تشغيل الموسيقى"}
         </span>
       </button>
     </div>

@@ -3,9 +3,7 @@ import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
 import { weddingConfig } from '../config/weddingData';
 
-export default function OurStory({ lang }) {
-  const isAr = lang === 'ar';
-
+export default function OurStory() {
   return (
     <section className="py-14 px-4">
       <div className="max-w-xl mx-auto">
@@ -22,22 +20,22 @@ export default function OurStory({ lang }) {
           <div className="absolute bottom-3 left-3 text-[#B89047] opacity-60 text-xl font-serif">☙</div>
           <div className="absolute bottom-3 right-3 text-[#B89047] opacity-60 text-xl font-serif">❧</div>
 
-          <span className="text-xs uppercase tracking-[0.3em] text-[#8E6A2B] font-serif-luxury font-bold block mb-2">
-            {weddingConfig.story.title[lang]}
+          <span className="text-xs text-[#8E6A2B] font-bold block mb-2">
+            {weddingConfig.story.title.ar}
           </span>
 
           <h2 className="text-3xl sm:text-4xl font-script text-[#2D241E] mb-6">
-            {isAr ? "حكايتنا وبداية رحلتنا" : "Two Hearts, One Journey"}
+            حكايتنا وبداية رحلتنا
           </h2>
 
-          {/* Meaningful Verse / Quote */}
-          <blockquote className="font-serif-luxury text-sm italic text-[#8E6A2B] leading-relaxed mb-6 px-4 py-3 bg-[#F8F5EE] rounded-xl border-l-2 rtl:border-l-0 rtl:border-r-2 border-[#B89047] font-medium">
-            {weddingConfig.story.quote[lang]}
+          {/* Meaningful Verse */}
+          <blockquote className="font-arabic-title text-base sm:text-lg text-[#8E6A2B] leading-relaxed mb-6 px-4 py-3 bg-[#F8F5EE] rounded-xl border-r-2 border-[#B89047] font-semibold">
+            {weddingConfig.story.quote.ar}
           </blockquote>
 
-          {/* Heartfelt narrative */}
+          {/* Heartfelt narrative in Arabic */}
           <p className="text-[#5A4F46] text-sm sm:text-base leading-relaxed font-light">
-            {weddingConfig.story.message[lang]}
+            {weddingConfig.story.message.ar}
           </p>
 
           <div className="flex items-center justify-center gap-2 mt-6">
