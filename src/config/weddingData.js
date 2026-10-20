@@ -13,9 +13,7 @@ export const weddingConfig = {
   },
   bride: {
     en: "Sara",
-    ar: "سارة",
-    fullNameEn: "Sara Ahmed",
-    fullNameAr: "سارة أحمد"
+    ar: "سارة"
   },
 
   // Wedding Date & Time
@@ -28,15 +26,15 @@ export const weddingConfig = {
     shortDay: "15.11"
   },
   displayTime: {
-    en: "Six Thirty in the Evening (06:30 PM)",
-    ar: "في تمام الساعة السادسة والنصف مساءً"
+    en: "Six in the Evening (06:00 PM)",
+    ar: "في تمام الساعة السادسة  مساءً"
   },
 
   // Venue & Location
   venue: {
     name: {
       en: "Regency Pyramids Hotel - Marvella Ballroom",
-      ar: "فندق ريجنسي بيراميدز - قاعة مارڤيلا"
+      ar: "فندق ريـجنسي بيراميدز - قاعة مارڤيلا"
     },
     city: {
       en: "Al Haram, Giza",
